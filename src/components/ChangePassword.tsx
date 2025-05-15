@@ -25,6 +25,7 @@ export function ChangePassword({ onSuccess, onError }: ChangePasswordProps) {
     try {
       setLoading(true);
       // Simulate async password change (replace this with real API call)
+      !loading && console.log("data", data);
       setTimeout(() => {
         setLoading(false);
         reset();
