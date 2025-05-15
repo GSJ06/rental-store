@@ -128,7 +128,8 @@ export function ChangePassword({ onSuccess, onError }: ChangePasswordProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition"
+        className="w-full sm:w-auto px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
+                       transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
       >
         {isSubmitting ? "Saving..." : "Change Password"}
       </button>
