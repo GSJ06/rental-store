@@ -59,7 +59,7 @@ function App() {
                 : "text-gray-600 dark:text-gray-300 hover:text-blue-500"
             }`}
           >
-            Rental History
+            History
           </button>
           <button
             onClick={() => setActiveTab("password")}
@@ -69,7 +69,7 @@ function App() {
                 : "text-gray-600 dark:text-gray-300 hover:text-blue-500"
             }`}
           >
-            Change Password
+            Password
           </button>
         </div>
         {activeTab === "profile" && (

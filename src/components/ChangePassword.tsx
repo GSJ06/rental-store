@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { changePasswordSchema, ChangePasswordFormData } from "../types/schema";
 import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 interface ChangePasswordProps {
   onSuccess: () => void;
@@ -20,6 +21,9 @@ export function ChangePassword({ onSuccess, onError }: ChangePasswordProps) {
   });
 
   const [loading, setLoading] = useState(false);
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = (data: ChangePasswordFormData) => {
     try {
@@ -50,11 +54,20 @@ export function ChangePassword({ onSuccess, onError }: ChangePasswordProps) {
         <label className="block text-sm space-x-2 font-medium text-gray-700 dark:text-gray-200">
           Current Password
         </label>
-        <input
-          type="password"
-          {...register("currentPassword")}
-          className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed"
-        />
+        <div className="relative">
+          <input
+            type={showCurrentPassword ? "text" : "password"}
+            {...register("currentPassword")}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed"
+          />
+          <button
+            type="button"
+            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          >
+            {showCurrentPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
         {errors.currentPassword && (
           <p className="text-red-500 text-sm mt-1">
             {errors.currentPassword.message}
@@ -66,11 +79,20 @@ export function ChangePassword({ onSuccess, onError }: ChangePasswordProps) {
         <label className="block text-sm space-x-2 font-medium text-gray-700 dark:text-gray-200">
           New Password
         </label>
-        <input
-          type="password"
-          {...register("newPassword")}
-          className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed"
-        />
+        <div className="relative">
+          <input
+            type={showNewPassword ? "text" : "password"}
+            {...register("newPassword")}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed"
+          />
+          <button
+            type="button"
+            onClick={() => setShowNewPassword(!showNewPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          >
+            {showNewPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
         {errors.newPassword && (
           <p className="text-red-500 text-sm mt-1">
             {errors.newPassword.message}
@@ -82,11 +104,20 @@ export function ChangePassword({ onSuccess, onError }: ChangePasswordProps) {
         <label className="block text-sm space-x-2 font-medium text-gray-700 dark:text-gray-200">
           Confirm New Password
         </label>
-        <input
-          type="password"
-          {...register("confirmPassword")}
-          className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed"
-        />
+        <div className="relative">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            {...register("confirmPassword")}
+            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:cursor-not-allowed"
+          />
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          >
+            {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
         {errors.confirmPassword && (
           <p className="text-red-500 text-sm mt-1">
             {errors.confirmPassword.message}
@@ -97,7 +128,8 @@ export function ChangePassword({ onSuccess, onError }: ChangePasswordProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition"
+        className="w-full sm:w-auto px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
+                       transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
       >
         {isSubmitting ? "Saving..." : "Change Password"}
       </button>

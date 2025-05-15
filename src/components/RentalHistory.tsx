@@ -20,16 +20,19 @@ export function RentalHistory({ rentals }: RentalHistoryProps) {
   };
 
   return (
-    <div className="glass-effect rounded-xl shadow-lg p-6 transition-all duration-300">
-      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-        Rental History
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="glass-effect rounded-xl shadow-sm p-6 transition-all duration-300">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-0">
+          Rental History
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6">
         {rentals.map((rental) => (
           <div
             key={rental.order_id}
-            className="glass-effect rounded-xl p-6 transition-all duration-300 hover:shadow-xl 
-                     transform hover:scale-[1.02] cursor-pointer"
+            className="glass-effect rounded-xl p-6 transition-all duration-300 /*hover:shadow-xl 
+                     transform hover:scale-[1.02]*/ cursor-pointer shadow-md"
           >
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
               <div>
@@ -44,7 +47,7 @@ export function RentalHistory({ rentals }: RentalHistoryProps) {
                 </div>
               </div>
               <span
-                className={`px-4 py-1.5 rounded-full text-sm font-me dium ${getStatusColor(
+                className={`px-4 py-1.5 rounded-full text-sm font-medium ${getStatusColor(
                   rental.status
                 )}`}
               >
@@ -53,20 +56,20 @@ export function RentalHistory({ rentals }: RentalHistoryProps) {
             </div>
 
             <div className="space-y-3">
-              {rental.items.map((item, index) => (
+              {rental.items.map((item, index) => (  
                 <div
                   key={index}
-                  className="flex items-center justify-between py-3 border-t dark:border-gray-700/50"
+                  className="flex items-center justify-between py-2 border-t dark:border-gray-700/50"
                 >
-                  <div className="flex items-center">
+                  <div className="flex items-center gap-2">
                     <Package
                       size={16}
-                      className="mr-2 text-gray-500 dark:text-gray-400"
+                      className="text-gray-500 dark:text-gray-400"
                     />
                     <span className="dark:text-white font-medium">
                       {item.name}
                     </span>
-                    <span className="text-gray-500 dark:text-gray-400 ml-2">
+                    <span className="text-gray-500 dark:text-gray-400">
                       (₹{item.price_per_unit}x{item.quantity})
                     </span>
                   </div>
