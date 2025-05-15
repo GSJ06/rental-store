@@ -29,8 +29,8 @@ A modern, responsive user profile management system built with React, TypeScript
 
 1. Clone the repository:
    ```bash
-   git clone <https://github.com/GSJ06/rental-store.git>
-   cd <rental-store>
+   git clone https://github.com/GSJ06/rental-store.git
+   cd rental-store
    ```
 
 2. Install dependencies:
@@ -64,7 +64,6 @@ src/
 1. **Component Architecture**
    - Modular components for better maintainability
    - Clear separation of concerns
-   - Reusable components for common UI elements
 
 2. **Form Handling**
    - React Hook Form for efficient form management
